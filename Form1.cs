@@ -8,6 +8,7 @@ namespace RegistrationNew_224102915
 {
     public partial class Form1 : Form
     {
+        public bool BackToLogin { get; private set; }
         public Form1()
         {
             InitializeComponent();
@@ -17,7 +18,6 @@ namespace RegistrationNew_224102915
         {
             lblStatus.Text = "";
 
-            //---- 1. Read and validate the input ----
             string fullName = txtFullName.Text.Trim();
             string email = txtEmail.Text.Trim().ToLowerInvariant();
             string password = txtPassword.Text;
@@ -41,15 +41,12 @@ namespace RegistrationNew_224102915
                 ShowError("Passwords do not match.", txtConfirmPassword); return;
             }
 
-            //---- 2. Never store the raw password ----
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
 
-            //---- 3. Read the connection string from App.config ----
             string connectionString =
                 ConfigurationManager.ConnectionStrings["RegistrationDb"]?.ConnectionString
                 ?? throw new InvalidOperationException("Connection string 'RegistrationDb' not found in App.config.");
 
-            //---- 4. Parameterised INSERT ----
             const string sql = @"
 INSERT INTO dbo.Users (FullName, Email, PasswordHash, DateOfBirth)
 VALUES (@FullName, @Email, @PasswordHash, @DateOfBirth);";
@@ -63,8 +60,8 @@ VALUES (@FullName, @Email, @PasswordHash, @DateOfBirth);";
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@PasswordHash", passwordHash);
                     cmd.Parameters.AddWithValue("@DateOfBirth", (object)dob ?? DBNull.Value);
-                    conn.Open(); // connects - a wrong string fails here
-                    int rows = cmd.ExecuteNonQuery(); // number of rows inserted
+                    conn.Open();
+                    int rows = cmd.ExecuteNonQuery(); 
 
                     lblStatus.ForeColor = Color.Green;
                     lblStatus.Text = $"Welcome, {fullName}! Account saved.";
@@ -73,7 +70,6 @@ VALUES (@FullName, @Email, @PasswordHash, @DateOfBirth);";
             }
             catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
             {
-                // Unique-constraint violation -> email already exists
                 ShowError("That email address is already registered.", txtEmail);
             }
             catch (SqlException ex)
@@ -92,12 +88,19 @@ VALUES (@FullName, @Email, @PasswordHash, @DateOfBirth);";
 
         private void ClearForm()
         {
+            btnCancel.Text = "Back to Login";
             txtFullName.Clear();
             txtEmail.Clear();
             txtPassword.Clear();
             txtConfirmPassword.Clear();
             dtpDateOfBirth.Checked = false;
             txtFullName.Focus();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            BackToLogin = true;
+            Close();
         }
     }
 }

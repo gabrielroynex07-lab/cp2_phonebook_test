@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDob = new System.Windows.Forms.Label();
@@ -40,12 +41,15 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
+            this.lblFullName.BackColor = System.Drawing.Color.Black;
             this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblFullName.ForeColor = System.Drawing.Color.White;
             this.lblFullName.Location = new System.Drawing.Point(95, 49);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(85, 20);
@@ -56,8 +60,9 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lblStatus.AutoSize = true;
+            this.lblStatus.BackColor = System.Drawing.Color.Black;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblStatus.ForeColor = System.Drawing.Color.Lime;
+            this.lblStatus.ForeColor = System.Drawing.Color.White;
             this.lblStatus.Location = new System.Drawing.Point(75, 301);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
@@ -66,7 +71,9 @@
             // lblDob
             // 
             this.lblDob.AutoSize = true;
+            this.lblDob.BackColor = System.Drawing.Color.Black;
             this.lblDob.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblDob.ForeColor = System.Drawing.Color.White;
             this.lblDob.Location = new System.Drawing.Point(75, 253);
             this.lblDob.Name = "lblDob";
             this.lblDob.Size = new System.Drawing.Size(105, 20);
@@ -76,7 +83,9 @@
             // lblConfirm
             // 
             this.lblConfirm.AutoSize = true;
+            this.lblConfirm.BackColor = System.Drawing.Color.Black;
             this.lblConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblConfirm.ForeColor = System.Drawing.Color.White;
             this.lblConfirm.Location = new System.Drawing.Point(33, 202);
             this.lblConfirm.Name = "lblConfirm";
             this.lblConfirm.Size = new System.Drawing.Size(147, 20);
@@ -86,7 +95,9 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
+            this.lblPassword.BackColor = System.Drawing.Color.Black;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblPassword.ForeColor = System.Drawing.Color.White;
             this.lblPassword.Location = new System.Drawing.Point(97, 151);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(83, 20);
@@ -96,7 +107,9 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
+            this.lblEmail.BackColor = System.Drawing.Color.Black;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblEmail.ForeColor = System.Drawing.Color.White;
             this.lblEmail.Location = new System.Drawing.Point(129, 100);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(51, 20);
@@ -144,19 +157,31 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(184, 355);
+            this.btnRegister.Location = new System.Drawing.Point(234, 355);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(97, 33);
+            this.btnRegister.Size = new System.Drawing.Size(149, 33);
             this.btnRegister.TabIndex = 13;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Register_224102915_Nelondo Gabriel";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(29, 355);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(149, 33);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 436);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(436, 438);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.dtpDateOfBirth);
             this.Controls.Add(this.txtEmail);
@@ -169,8 +194,9 @@
             this.Controls.Add(this.lblDob);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblFullName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Register_224102915_Nelondo Gabriel";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,6 +216,7 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
